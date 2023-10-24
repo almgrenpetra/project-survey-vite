@@ -9,7 +9,7 @@ import { Comments } from "./Comments";
 // Define the survey component
 export const SurveyForm = () => {
   const [surveyData, setSurveyData] = useState({
-    name: "mike",
+    name: "",
     roomType: "",
     duration: "",
     treatment: "",
@@ -25,7 +25,7 @@ export const SurveyForm = () => {
 
   const nextStep = () => {
     {
-      currentStep < 6 && setCurrentStep(currentStep + 1);
+      currentStep < steps.length && setCurrentStep(currentStep + 1);
     }
   };
 
