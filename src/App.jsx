@@ -1,3 +1,10 @@
+import { SurveyForm } from "./components/SurveyForm";
+
 export const App = () => {
-  return <div>Find me in src/app.jsx!</div>;
+  return (
+    <div>
+      Hotel survey
+      <SurveyForm />
+    </div>
+  );
 };
