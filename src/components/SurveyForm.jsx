@@ -1,23 +1,50 @@
 import { useState } from "react";
 import { Name } from "./Name";
-import { RoomType } from "./RoomType";
-import { Duration } from "./Duration";
-import { Treatment } from "./Treatment";
+// import { RoomType } from "./RoomType";
+// import { Duration } from "./Duration";
+// import { Treatment } from "./Treatment";
 import { Stars } from "./Stars";
 import { Comments } from "./Comments";
+import { SelectOption } from "./SelectOption";
+import { RadioButtons } from "./RadioButtons";
+
+const roomTypesArray = [
+  "<Select type of room>",
+  "Option 1",
+  "Option 2",
+  "Option 3",
+];
+
+const durationArray = [
+  "1-7 days",
+  "8-14 days",
+  "15-19 days",
+  "more than 19 days",
+];
+
+const treatmentArray = [
+  "<Select a treatment>",
+  "I had no treatments",
+  "Treatment 1",
+  "Treatment 2",
+  "Treatment 3",
+];
 
 // Define the survey component
 export const SurveyForm = () => {
   const [surveyData, setSurveyData] = useState({
     name: "",
-    roomType: "",
-    duration: "",
-    treatment: "",
+    // roomType: "",
+    // duration: "",
+    // treatment: "",
     stars: "",
   });
 
   // State to track current page in the survey
   const [currentStep, setCurrentStep] = useState(1);
+  const [selectedRoomType, setSelectedRoomType] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState();
+  const [selectedTreatment, setSelectedTreatment] = useState("");
 
   const updateSurveyData = (field, value) => {
     setSurveyData((values) => ({ ...values, [field]: value }));
@@ -39,8 +66,12 @@ export const SurveyForm = () => {
     console.log(surveyData);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <div>
+    <form className="surveyForm" onSubmit={handleSubmit}>
       {currentStep === 1 && (
         <>
           <p>Step 1</p>
@@ -50,28 +81,49 @@ export const SurveyForm = () => {
       {currentStep === 2 && (
         <>
           <p>Step 2</p>
-          <RoomType
-            value={surveyData.roomType}
-            updateSurveyData={updateSurveyData}
+          <SelectOption
+            className="roomType"
+            header="Which room did you stay in?"
+            array={roomTypesArray}
+            selected={selectedRoomType}
+            setSelected={setSelectedRoomType}
           />
+          {/* <RoomType
+            // value={surveyData.roomType}
+            // updateSurveyData={updateSurveyData}
+          /> */}
         </>
       )}
       {currentStep === 3 && (
         <>
           <p>Step 3</p>
-          <Duration
-          // value={surveyData.duration}
-          // updateSurveyData={updateSurveyData}
+          <RadioButtons
+            className="duration"
+            header="How long did you stay at the Balance?"
+            array={durationArray}
+            selected={selectedDuration}
+            setSelected={setSelectedDuration}
           />
+          {/* <Duration
+            value={surveyData.duration}
+            updateSurveyData={updateSurveyData}
+          /> */}
         </>
       )}
       {currentStep === 4 && (
         <>
           <p>Step 4</p>
-          <Treatment
+          <SelectOption
+            className="treatment"
+            header="Did you book any treatments during your stay?"
+            array={treatmentArray}
+            selected={selectedTreatment}
+            setSelected={setSelectedTreatment}
+          />
+          {/* <Treatment
             value={surveyData.treatment}
             updateSurveyData={updateSurveyData}
-          />
+          /> */}
         </>
       )}
       {currentStep === 5 && (
@@ -100,6 +152,6 @@ export const SurveyForm = () => {
       ) : (
         <button onClick={submitSurvey}>Submit</button>
       )}
-    </div>
+    </form>
   );
 };
