@@ -145,10 +145,10 @@ export const SurveyForm = () => {
         </>
       )}
 
-      {currentStep > 1 && <button onClick={prevStep}>Back</button>}
+      {currentStep > 1 && <button onClick={prevStep} className="btn">Back</button>}
 
       {currentStep < 6 ? (
-        <button onClick={nextStep}>Next</button>
+        <button onClick={nextStep} className="btn">Next</button>
       ) : (
         <button onClick={submitSurvey}>Submit</button>
       )}
