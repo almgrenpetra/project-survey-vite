@@ -1,16 +1,24 @@
 import React from "react";
 
-export const TextInput = ({ className, header, text, setText }) => {
-  console.log(className, header, text);
+export const TextInput = ({
+    className,
+    question,
+    value,
+    valueKey,
+    updateSurveyData
+  }) => {
+
+  const save = (e) => updateSurveyData(valueKey, e.target.value);
+  console.log(className, question, value);
   return (
     <>
-      <h3>{header}</h3>
+      <h3>{question}</h3>
       <label>
         <input
           className={className}
           type="text"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
+          value={value}
+          onChange={save}
         />
       </label>
     </>

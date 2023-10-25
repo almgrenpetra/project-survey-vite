@@ -2,20 +2,22 @@ import React from "react";
 
 export const SelectOption = ({
   className,
-  header,
-  array,
-  selected,
-  setSelected,
+  question,
+  value,
+  valueKey,
+  options,
+  updateSurveyData
 }) => {
+  const save = (e) => updateSurveyData(valueKey, e.target.value);
   return (
     <>
-      <h3>{header}</h3>
+      <h3>{question}</h3>
       <select
         className={className}
-        onChange={(event) => setSelected(event.target.value)}
-        value={selected}
+        onChange={save}
+        value={value}
       >
-        {array.map((option) => (
+        {options.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>

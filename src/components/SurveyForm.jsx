@@ -3,30 +3,6 @@ import { SelectOption } from "./SelectOption";
 import { RadioButtons } from "./RadioButtons";
 import { TextInput } from "./TextInput";
 
-const roomTypesArray = [
-  "<Select type of room>",
-  "Option 1",
-  "Option 2",
-  "Option 3",
-];
-
-const durationArray = [
-  "1-7 days",
-  "8-14 days",
-  "15-19 days",
-  "more than 19 days",
-];
-
-const treatmentArray = [
-  "<Select a treatment>",
-  "I had no treatments",
-  "Treatment 1",
-  "Treatment 2",
-  "Treatment 3",
-];
-
-const starsArray = ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"];
-
 // Define the survey component
 export const SurveyForm = () => {
   const [surveyData, setSurveyData] = useState({
@@ -61,110 +37,78 @@ export const SurveyForm = () => {
     console.log(surveyData);
   };
 
-  /*
-      <form className="surveyForm" onSubmit={handleSubmit}>
-      {currentStep === 1 && (
-        <>
-          <p>Step 1</p>
-          <TextInput
-            className="name"
-            header="What is your name?"
-            text={name}
-            setText={setName}
-          />
-        </>
-      )}
-      {currentStep === 2 && (
-        <>
-          <p>Step 2</p>
-          <SelectOption
-            className="roomType"
-            header="Which room did you stay in?"
-            array={roomTypesArray}
-            selected={selectedRoomType}
-            setSelected={setSelectedRoomType}
-          />
-        </>
-      )}
-      {currentStep === 3 && (
-        <>
-          <p>Step 3</p>
-          <RadioButtons
-            className="duration"
-            header="How long did you stay at the Balance?"
-            array={durationArray}
-            selected={selectedDuration}
-            setSelected={setSelectedDuration}
-          />
-        </>
-      )}
-      {currentStep === 4 && (
-        <>
-          <p>Step 4</p>
-          <SelectOption
-            className="treatment"
-            header="Did you book any treatments during your stay?"
-            array={treatmentArray}
-            selected={selectedTreatment}
-            setSelected={setSelectedTreatment}
-          />
-        </>
-      )}
-      {currentStep === 5 && (
-        <>
-          <p>Step 5</p>
-          <RadioButtons
-            className="stars"
-            header="How many stars would you give your treatment?"
-            array={starsArray}
-            selected={selectedStars}
-            setSelected={setSelectedStars}
-          />
-        </>
-      )}
-      {currentStep === 6 && (
-        <>
-          <p>Step 6</p>
-          <TextInput
-            className="comment"
-            header="Please let us know if there is anything else that you want to share with us.
-            "
-            text={comment}
-            setText={setComment}
-          />
-        </>
-      )}
-
-      {currentStep > 1 && <button onClick={prevStep} className="btn">Back</button>}
-
-      {currentStep < 6 ? (
-        <button onClick={nextStep} className="btn">Next</button>
-      ) : (
-        <button onClick={submitSurvey}>Submit</button>
-      )}
-    </form>
-    */
-
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   // We save all steps in an array as objects
   const steps = [
-      {label: 'Step 1', Component: TextInput, valueKey: 'name' },
-      {label: 'Step 2', Component: SelectOption, valueKey: 'roomType' },
-      {label: 'Step 3', Component: RadioButtons, valueKey: 'duration' },
-      {label: 'Step 4', Component: SelectOption, valueKey: 'treatment' },
-      {label: 'Step 5', Component: RadioButtons, valueKey: 'stars' },
-      {label: 'Step 6', Component: TextInput, valueKey: 'comments' }
+      {
+        label: 'Step 1',
+        Component: TextInput,
+        valueKey: 'name',
+        question: 'What is your name?',
+        className: 'name',
+        options: []
+      },
+      {
+        label: 'Step 2',
+        Component: SelectOption,
+        valueKey: 'roomType',
+        question: 'Which room did you stay in?',
+        options: [
+          "<Select type of room>",
+          "Option 1",
+          "Option 2",
+          "Option 3",
+        ],
+        className: ""
+      },
+      {
+        label: 'Step 3',
+        Component: RadioButtons,
+        valueKey: 'duration',
+        className: '',
+        options: [
+          "1-7 days",
+          "8-14 days",
+          "15-19 days",
+          "more than 19 days"
+        ],
+        question: 'How long did you stay at the Balance?'
+      },
+      {label: 'Step 4', Component: SelectOption, valueKey: 'treatment', question: 'Did you book any treatments during your stay?', className: '', 
+        options: [ "<Select a treatment>",
+        "I had no treatments",
+        "Treatment 1",
+        "Treatment 2",
+        "Treatment 3",
+      ] },
+      {
+        label: 'Step 5', 
+        Component: RadioButtons, 
+        valueKey: 'stars',
+        question: 'How many stars would you give your treatment?',
+        className: '',
+        options: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
+      },
+      {
+        label: 'Step 6',
+        Component: TextInput,
+        valueKey: 'comments',
+        question: 'Please let us know if there is anything else that you want to share with us.',
+        className: '',
+        options: [],
+      }
   ]
 
   // Our array is indexed from 0 but currentStep starts from 1 so we subtract currentStep with 1 to get the data for the correct step.
   // We store all
   const stepDetails = steps[currentStep - 1]
   return (
-    <div className="survey-container">
+    <form className="surveyForm" onSubmit={handleSubmit}>
       <div className="survey-question">
-        <h2>Question {currentStep}</h2>
-        <stepDetails.Component value={surveyData[stepDetails.valueKey]} valueKey={stepDetails.valueKey} updateSurveyData={updateSurveyData} />
+        <stepDetails.Component value={surveyData[stepDetails.valueKey]} valueKey={stepDetails.valueKey} question={stepDetails.question} className={stepDetails.className} updateSurveyData={updateSurveyData} options={stepDetails.options} />
       </div>
       <div className="survey-navigation">
         {currentStep > 1 && <button onClick={prevStep}>Back</button>}
@@ -175,6 +119,6 @@ export const SurveyForm = () => {
           <button onClick={submitSurvey}>Submit</button>
         )}
       </div>
-    </div>
+    </form>
   );
 };
