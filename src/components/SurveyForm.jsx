@@ -1,10 +1,4 @@
 import { useState } from "react";
-// import { Name } from "./Name";
-// import { RoomType } from "./RoomType";
-// import { Duration } from "./Duration";
-// import { Treatment } from "./Treatment";
-// import { Stars } from "./Stars";
-// import { Comments } from "./Comments";
 import { SelectOption } from "./SelectOption";
 import { RadioButtons } from "./RadioButtons";
 import { TextInput } from "./TextInput";
@@ -88,7 +82,6 @@ export const SurveyForm = () => {
             text={name}
             setText={setName}
           />
-          {/* <Name value={surveyData.name} updateSurveyData={updateSurveyData} /> */}
         </>
       )}
       {currentStep === 2 && (
@@ -101,10 +94,6 @@ export const SurveyForm = () => {
             selected={selectedRoomType}
             setSelected={setSelectedRoomType}
           />
-          {/* <RoomType
-            // value={surveyData.roomType}
-            // updateSurveyData={updateSurveyData}
-          /> */}
         </>
       )}
       {currentStep === 3 && (
@@ -117,10 +106,6 @@ export const SurveyForm = () => {
             selected={selectedDuration}
             setSelected={setSelectedDuration}
           />
-          {/* <Duration
-            value={surveyData.duration}
-            updateSurveyData={updateSurveyData}
-          /> */}
         </>
       )}
       {currentStep === 4 && (
@@ -133,10 +118,6 @@ export const SurveyForm = () => {
             selected={selectedTreatment}
             setSelected={setSelectedTreatment}
           />
-          {/* <Treatment
-            value={surveyData.treatment}
-            updateSurveyData={updateSurveyData}
-          /> */}
         </>
       )}
       {currentStep === 5 && (
@@ -149,10 +130,6 @@ export const SurveyForm = () => {
             selected={selectedStars}
             setSelected={setSelectedStars}
           />
-          {/* <Stars
-          // value={surveyData.stars}
-          // updateSurveyData={updateSurveyData}
-          /> */}
         </>
       )}
       {currentStep === 6 && (
@@ -165,10 +142,6 @@ export const SurveyForm = () => {
             text={comment}
             setText={setComment}
           />
-          {/* <Comments
-            value={surveyData.comments}
-            updateSurveyData={updateSurveyData}
-          /> */}
         </>
       )}
 
