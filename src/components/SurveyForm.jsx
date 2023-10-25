@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Name } from "./Name";
+// import { Name } from "./Name";
 // import { RoomType } from "./RoomType";
 // import { Duration } from "./Duration";
 // import { Treatment } from "./Treatment";
-import { Stars } from "./Stars";
-import { Comments } from "./Comments";
+// import { Stars } from "./Stars";
+// import { Comments } from "./Comments";
 import { SelectOption } from "./SelectOption";
 import { RadioButtons } from "./RadioButtons";
+import { TextInput } from "./TextInput";
 
 const roomTypesArray = [
   "<Select type of room>",
@@ -30,25 +31,31 @@ const treatmentArray = [
   "Treatment 3",
 ];
 
+const starsArray = ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"];
+
 // Define the survey component
 export const SurveyForm = () => {
   const [surveyData, setSurveyData] = useState({
-    name: "",
+    // name: "",
     // roomType: "",
     // duration: "",
     // treatment: "",
-    stars: "",
+    // stars: "",
+    // comments: "",
   });
 
   // State to track current page in the survey
   const [currentStep, setCurrentStep] = useState(1);
+  const [name, setName] = useState("");
   const [selectedRoomType, setSelectedRoomType] = useState("");
-  const [selectedDuration, setSelectedDuration] = useState();
+  const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedTreatment, setSelectedTreatment] = useState("");
+  const [selectedStars, setSelectedStars] = useState("");
+  const [comment, setComment] = useState("");
 
-  const updateSurveyData = (field, value) => {
-    setSurveyData((values) => ({ ...values, [field]: value }));
-  };
+  // const updateSurveyData = (field, value) => {
+  //   setSurveyData((values) => ({ ...values, [field]: value }));
+  // };
 
   const nextStep = () => {
     {
@@ -75,7 +82,13 @@ export const SurveyForm = () => {
       {currentStep === 1 && (
         <>
           <p>Step 1</p>
-          <Name value={surveyData.name} updateSurveyData={updateSurveyData} />
+          <TextInput
+            className="name"
+            header="What is your name?"
+            text={name}
+            setText={setName}
+          />
+          {/* <Name value={surveyData.name} updateSurveyData={updateSurveyData} /> */}
         </>
       )}
       {currentStep === 2 && (
@@ -129,19 +142,33 @@ export const SurveyForm = () => {
       {currentStep === 5 && (
         <>
           <p>Step 5</p>
-          <Stars
+          <RadioButtons
+            className="stars"
+            header="How many stars would you give your treatment?"
+            array={starsArray}
+            selected={selectedStars}
+            setSelected={setSelectedStars}
+          />
+          {/* <Stars
           // value={surveyData.stars}
           // updateSurveyData={updateSurveyData}
-          />
+          /> */}
         </>
       )}
       {currentStep === 6 && (
         <>
           <p>Step 6</p>
-          <Comments
+          <TextInput
+            className="comment"
+            header="Please let us know if there is anything else that you want to share with us.
+            "
+            text={comment}
+            setText={setComment}
+          />
+          {/* <Comments
             value={surveyData.comments}
             updateSurveyData={updateSurveyData}
-          />
+          /> */}
         </>
       )}
 
