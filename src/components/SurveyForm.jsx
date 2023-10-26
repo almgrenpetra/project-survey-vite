@@ -3,6 +3,7 @@ import { SelectOption } from "./SelectOption";
 import { RadioButtons } from "./RadioButtons";
 import { TextInput } from "./TextInput";
 import { Summary } from "./Summary";
+import { ProgressBar } from "./ProgressBar";
 
 // Define the survey component
 export const SurveyForm = () => {
@@ -25,7 +26,7 @@ export const SurveyForm = () => {
 
   const nextStep = () => {
     {
-      currentStep < steps.length && setCurrentStep(currentStep + 1);
+      currentStep < filteredSteps.length && setCurrentStep(currentStep + 1);
     }
   };
 
@@ -51,7 +52,7 @@ export const SurveyForm = () => {
       valueKey: "name",
       question: "What is your name?",
       className: "name",
-      options: [],
+      display: true
     },
     {
       label: "Step 2",
@@ -60,6 +61,7 @@ export const SurveyForm = () => {
       question: "Which room did you stay in?",
       options: ["<Select type of room>", "Option 1", "Option 2", "Option 3"],
       className: "",
+      display: true
     },
     {
       label: "Step 3",
@@ -68,6 +70,7 @@ export const SurveyForm = () => {
       className: "",
       options: ["1-7 days", "8-14 days", "15-19 days", "more than 19 days"],
       question: "How long did you stay at the Balance?",
+      display: true
     },
     {
       label: "Step 4",
@@ -82,6 +85,7 @@ export const SurveyForm = () => {
         "Treatment 2",
         "Treatment 3",
       ],
+      display: true
     },
     {
       label: "Step 5",
@@ -90,6 +94,7 @@ export const SurveyForm = () => {
       question: "How many stars would you give your treatment?",
       className: "",
       options: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
+      display: surveyData.treatment != "I had no treatments"
     },
     {
       label: "Step 6",
@@ -98,13 +103,15 @@ export const SurveyForm = () => {
       question:
         "Please let us know if there is anything else that you want to share with us.",
       className: "",
-      options: [],
+      display: true
     },
   ];
 
+  const filteredSteps = steps.filter(item => item.display === true)
+  console.log("FilteredSteps ", filteredSteps)
+
   // Our array is indexed from 0 but currentStep starts from 1 so we subtract currentStep with 1 to get the data for the correct step.
-  // We store all
-  const stepDetails = steps[currentStep - 1];
+  const stepDetails = filteredSteps[currentStep - 1];
   return (
     <>
       {submit ? (
@@ -118,7 +125,7 @@ export const SurveyForm = () => {
               question={stepDetails.question}
               className={stepDetails.className}
               updateSurveyData={updateSurveyData}
-              options={stepDetails.options}
+              options={stepDetails?.options || []}
             />
           </div>
           <div className="survey-navigation">
@@ -130,6 +137,7 @@ export const SurveyForm = () => {
               <button onClick={submitSurvey}>Submit</button>
             )}
           </div>
+          <ProgressBar currentStep={currentStep} numberOfQuestions={filteredSteps.length} />
         </form>
       )}
     </>
