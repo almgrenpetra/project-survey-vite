@@ -62,13 +62,13 @@ export const SurveyForm = () => {
           "Option 2",
           "Option 3",
         ],
-        className: ""
+        className: "dropdown"
       },
       {
         label: 'Step 3',
         Component: RadioButtons,
         valueKey: 'duration',
-        className: '',
+        className: 'radio-buttons',
         options: [
           "1-7 days",
           "8-14 days",
@@ -77,7 +77,7 @@ export const SurveyForm = () => {
         ],
         question: 'How long did you stay at the Balance?'
       },
-      {label: 'Step 4', Component: SelectOption, valueKey: 'treatment', question: 'Did you book any treatments during your stay?', className: '', 
+      {label: 'Step 4', Component: SelectOption, valueKey: 'treatment', question: 'Did you book any treatments during your stay?', className: 'dropdown', 
         options: [ "<Select a treatment>",
         "I had no treatments",
         "Treatment 1",
@@ -89,7 +89,7 @@ export const SurveyForm = () => {
         Component: RadioButtons, 
         valueKey: 'stars',
         question: 'How many stars would you give your treatment?',
-        className: '',
+        className: 'radio-buttons',
         options: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
       },
       {
@@ -97,7 +97,7 @@ export const SurveyForm = () => {
         Component: TextInput,
         valueKey: 'comments',
         question: 'Please let us know if there is anything else that you want to share with us.',
-        className: '',
+        className: 'textarea',
         options: [],
       }
   ]
@@ -111,12 +111,12 @@ export const SurveyForm = () => {
         <stepDetails.Component value={surveyData[stepDetails.valueKey]} valueKey={stepDetails.valueKey} question={stepDetails.question} className={stepDetails.className} updateSurveyData={updateSurveyData} options={stepDetails.options} />
       </div>
       <div className="survey-navigation">
-        {currentStep > 1 && <button onClick={prevStep}>Back</button>}
+        {currentStep > 1 && <button onClick={prevStep} className="button-survey">Back</button>}
         {/* We use the steps.length instead of hard coding a number. This way we can easily add or remove steps */ }
         {currentStep < steps.length ? (
-          <button onClick={nextStep}>Next</button>
+          <button onClick={nextStep} className="button-survey">Next</button>
         ) : (
-          <button onClick={submitSurvey}>Submit</button>
+          <button onClick={submitSurvey} className="submit">Submit</button>
         )}
       </div>
     </form>
