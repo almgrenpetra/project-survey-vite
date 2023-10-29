@@ -216,6 +216,16 @@ input {
   margin: 15px;
 }
 
+.progress-bar input {
+  width: 100%;
+  padding: initial;
+}
+
+.progress-bar .text {
+  width: 100%;
+  text-align: center;
+}
+
 /* Mobile styles */
 @media (max-width: 767px) {
   .form-container {

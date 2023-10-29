@@ -14,14 +14,14 @@ export const RadioButtons = ({
       <h3>{question}</h3>
       <div className={className}>
         {options.map((option) => (
-          <label key={option}>
+          <label key={option.value}>
             <input
               type="radio"
-              value={option}
+              value={option.value}
               onChange={save}
-              checked={value === option}
+              checked={value === option.value}
             />
-            {option}
+            {option.name}
           </label>
         ))}
       </div>

@@ -53,24 +53,37 @@ export const SurveyForm = () => {
       question: "What is your name?",
       className: "name",
       display: true,
+      answerRequired: true
     },
     {
       label: "Step 2",
       Component: SelectOption,
       valueKey: "roomType",
       question: "Which room did you stay in?",
-      options: ["<Select type of room>", "Suite", "Double room", "Single room"],
+      options: [
+        { text: "<Select type of room>", valueKey:""},
+        { text: "Suite", valueKey:"suite"},
+        { text: "Double room", valueKey:"double"},
+        { text: "Single room", valueKey:"single"},
+      ],
       className: "dropdown",
       display: true,
+      answerRequired: true
     },
     {
       label: "Step 3",
       Component: RadioButtons,
       valueKey: "duration",
       className: "radio-buttons",
-      options: ["1-7 days", "8-14 days", "15-19 days", "more than 19 days"],
+      options: [
+        { "name": "1-7 days", "value": "short" },
+        { "name": "8-14 days", "value": "medium" },
+        { "name": "15-19 days", "value": "long" },
+        { "name": "more than 19 days", "value": "extended" }
+      ],
       question: "How long did you stay at the Balance?",
       display: true,
+      answerRequired: true
     },
     {
       label: "Step 4",
@@ -79,13 +92,14 @@ export const SurveyForm = () => {
       question: "Did you book any treatments during your stay?",
       className: "dropdown",
       options: [
-        "<Select a treatment>",
-        "I had no treatments",
-        "Massage",
-        "Infra sauna",
-        "Facial",
+        { text: "<Select a treatment>" , valueKey: ""},
+        {text: "I had no treatments", valueKey: "no"},
+        {text: "Massage", valueKey:"massage"},
+        {text: "Infra sauna", valueKey:"sauna"},
+        {text: "Facial", valueKey:"facial"},
       ],
       display: true,
+      answerRequired: true
     },
     {
       label: "Step 5",
@@ -93,8 +107,16 @@ export const SurveyForm = () => {
       valueKey: "stars",
       question: "How many stars would you give your treatment?",
       className: "radio-buttons",
-      options: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
-      display: surveyData.treatment != "I had no treatments",
+      options: [
+        { name: "1 star", value: "1"},
+        { name: "2 stars", value: "2"},
+        { name: "3 stars", value: "3"},
+        { name: "4 stars", value: "4"},
+        { name: "5 stars", value: "5"},
+        ],
+      // We define a list of the values that should not render this display. And if our state is set to one of the values we get true. We then return the opposite meaning that we set display to false if the answer is one of our excluded values.
+      display: !(["no", ""].includes(surveyData.treatment)),
+      answerRequired: true
     },
     {
       label: "Step 6",
@@ -104,10 +126,14 @@ export const SurveyForm = () => {
         "Please let us know if there is anything else that you want to share with us.",
       className: "textarea",
       display: true,
+      answerRequired: false
     },
   ];
 
-  const filteredSteps = steps.filter((item) => item.display === true);
+  const filteredSteps = steps.filter(item => item.display === true)
+  const checkAllRequired = filteredSteps.reduce((passed, item) => {
+    return passed && !(item.answerRequired && !surveyData[item.valueKey]);
+  }, true);
 
   // Our array is indexed from 0 but currentStep starts from 1 so we subtract currentStep with 1 to get the data for the correct step.
   const stepDetails = filteredSteps[currentStep - 1];
@@ -134,12 +160,12 @@ export const SurveyForm = () => {
               </button>
             )}
             {/* We use the steps.length instead of hard coding a number. This way we can easily add or remove steps */}
-            {currentStep < filteredSteps.length ? (
-              <button onClick={nextStep} className="button-survey">
-                Next
+            { currentStep < filteredSteps.length ? (
+              <button onClick={nextStep} className="button-survey" disabled={ stepDetails.answerRequired && surveyData[stepDetails.valueKey] == ""}>
+                Continue
               </button>
             ) : (
-              <button onClick={submitSurvey} className="submit">
+              <button onClick={submitSurvey} className="submit" disabled={!checkAllRequired}>
                 Submit
               </button>
             )}
