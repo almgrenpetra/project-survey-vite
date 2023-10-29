@@ -13,7 +13,7 @@ code {
 }
 
 body {
-  background-image: url("./wellness-background.png");
+  background-image: url("./assets/wellness-background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -35,7 +35,6 @@ body {
   justify-content: center;
   color: #fff;
   padding: 20px;
-  height: auto;
   position: relative;
 }
 
@@ -75,6 +74,7 @@ h3 {
   padding: 8px 16px;
   border-radius: 30px;
   outline: none;
+  margin: 15px;
 }
 
 .radio-buttons input {
@@ -91,46 +91,7 @@ h3 {
   outline: none;
   margin: 15px;
 }
-:root {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-body {
-  background-image: url("src/assets/wellness-background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-}
-
-.form-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(77, 66, 47, 0.965);
-  height: auto;
-  width: 500px;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding: 20px;
-}
-
-.button-survey,
 .submit {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
@@ -139,16 +100,6 @@ body {
   border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
-}
-
-.name {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  color: #4d422f;
-  padding: 8px 16px;
-  border-radius: 30px;
-  outline: none;
-  margin: 15px;
 }
 
 .radio-buttons {
@@ -163,21 +114,6 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-}
-
-.radio-buttons input {
-  margin: 0;
-  cursor: pointer;
-}
-
-.dropdown {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  color: #4d422f;
-  padding: 8px 16px;
-  border-radius: 30px;
-  outline: none;
-  margin: 15px;
 }
 
 input {
@@ -208,12 +144,8 @@ input {
   margin-left: 15px;
 }
 
-.progress-bar{
+.progress-bar {
   margin-left: 15px;
-}
-
-.summary{
-  margin: 15px;
 }
 
 .progress-bar input {
@@ -237,13 +169,6 @@ button:disabled {
     padding: 10px; /* Adjust as needed */
   }
 
-  .radio-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 15px;
-  }
-
   .textarea {
     width: 100%;
     height: 200px;
@@ -257,27 +182,12 @@ button:disabled {
     font-size: 16px;
     outline: none;
   }
-
-  .text {
-    margin-left: 15px;
-  }
-  
-  .progress-bar{
-    margin-left: 15px;
-  }
 }
 
 /* Tablet styles */
 @media (min-width: 768px) and (max-width: 1023px) {
   .form-container {
     width: 70%;
-  }
-
-  .radio-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 15px;
   }
 }
 
