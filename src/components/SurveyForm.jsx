@@ -59,7 +59,12 @@ export const SurveyForm = () => {
       Component: SelectOption,
       valueKey: "roomType",
       question: "Which room did you stay in?",
-      options: ["<Select type of room>", "Option 1", "Option 2", "Option 3"],
+      options: [
+        { text: "<Select type of room>", valueKey:""},
+        { text: "Option 1", valueKey:"1"},
+        { text: "Option 2", valueKey:"2"},
+        { text: "Option 3", valueKey:"3"},
+      ],
       className: "dropdown",
       display: true
     },
@@ -79,11 +84,11 @@ export const SurveyForm = () => {
       question: "Did you book any treatments during your stay?",
       className: "dropdown",
       options: [
-        "<Select a treatment>",
-        "I had no treatments",
-        "Treatment 1",
-        "Treatment 2",
-        "Treatment 3",
+        { text: "<Select a treatment>" , valueKey: ""},
+        {text: "I had no treatments", valueKey: "no"},
+        {text: "Treatment 1", valueKey:"1"},
+        {text: "Treatment 2", valueKey:"2"},
+        {text: "Treatment 3", valueKey:"3"},
       ],
       display: true
     },
@@ -135,9 +140,9 @@ export const SurveyForm = () => {
               </button>
             )}
             {/* We use the steps.length instead of hard coding a number. This way we can easily add or remove steps */}
-            {currentStep < steps.length ? (
+            {currentStep < filteredSteps.length ? (
               <button onClick={nextStep} className="button-survey">
-                Next
+                Continue
               </button>
             ) : (
               <button onClick={submitSurvey} className="submit">
