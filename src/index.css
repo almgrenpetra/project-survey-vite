@@ -204,6 +204,18 @@ input {
   outline: none;
 }
 
+.text {
+  margin-left: 15px;
+}
+
+.progress-bar{
+  margin-left: 15px;
+}
+
+.summary{
+  margin: 15px;
+}
+
 /* Mobile styles */
 @media (max-width: 767px) {
   .form-container {
@@ -230,6 +242,14 @@ input {
     resize: vertical;
     font-size: 16px;
     outline: none;
+  }
+
+  .text {
+    margin-left: 15px;
+  }
+  
+  .progress-bar{
+    margin-left: 15px;
   }
 }
 
