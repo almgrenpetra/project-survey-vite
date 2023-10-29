@@ -36,6 +36,21 @@ background-position: center;
   color: #fff;
   padding: 20px;
   height: auto;
+  position: relative;
+}
+
+ .form-container h1 {
+  text-align: left; 
+  margin: 0; 
+  position: absolute; 
+  top: -35px; 
+  left: 0; 
+  padding: 10px;
+  width: 100%; 
+  z-index: 1; 
+  color: #9BCED3;
+  font-weight: normal;
+  font-size: 40px;
 }
 
 h3{
