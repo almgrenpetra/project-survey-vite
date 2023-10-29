@@ -13,21 +13,21 @@ code {
 }
 
 body {
-background-image: url("src/assets/wellness-background.png");
-background-size: cover;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-position: center;
+  background-image: url("./assets/wellness-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
-.form-container{
+.form-container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(77, 66, 47, 0.965);
-  height: auto; 
-  width: 500px; 
+  height: auto;
+  width: 500px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -39,28 +39,28 @@ background-position: center;
   position: relative;
 }
 
- .form-container h1 {
-  text-align: left; 
-  margin: 0; 
-  position: absolute; 
-  top: -35px; 
-  left: 0; 
+.form-container h1 {
+  text-align: left;
+  margin: 0;
+  position: absolute;
+  top: -35px;
+  left: 0;
   padding: 10px;
-  width: 100%; 
-  z-index: 1; 
-  color: #9BCED3;
+  width: 100%;
+  z-index: 1;
+  color: #9bced3;
   font-weight: normal;
   font-size: 40px;
 }
 
-h3{
+h3 {
   margin: 15px;
 }
 
 .button-survey {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 10px 20px;
   border-radius: 30px;
   cursor: pointer;
@@ -68,25 +68,24 @@ h3{
   margin: 15px;
 }
 
-.name{
+.name {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 8px 16px;
   border-radius: 30px;
   outline: none;
 }
 
-
 .radio-buttons input {
-  margin: 20px 10px 10px; 
+  margin: 20px 10px 10px;
   cursor: pointer;
 }
 
-.dropdown{
+.dropdown {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 8px 16px;
   border-radius: 30px;
   outline: none;
@@ -131,10 +130,11 @@ body {
   padding: 20px;
 }
 
-.button-survey, .submit {
+.button-survey,
+.submit {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 10px 20px;
   border-radius: 30px;
   cursor: pointer;
@@ -144,7 +144,7 @@ body {
 .name {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 8px 16px;
   border-radius: 30px;
   outline: none;
@@ -173,7 +173,7 @@ body {
 .dropdown {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 8px 16px;
   border-radius: 30px;
   outline: none;
@@ -183,26 +183,26 @@ body {
 input {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  color: #4D422F;
+  color: #4d422f;
   padding: 10px 0px 0px 15px;
   font-size: 16px;
   border-radius: 30px;
   outline: none;
 }
 
-.textarea{
-    width: 100%;
-    height: 200px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-    font-size: 16px;
-    outline: none;
-  }
+.textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-size: 16px;
+  outline: none;
+}
 
 /* Mobile styles */
 @media (max-width: 767px) {
@@ -218,7 +218,7 @@ input {
     margin: 15px;
   }
 
-  .textarea{
+  .textarea {
     width: 100%;
     height: 200px;
     padding: 12px;
@@ -231,13 +231,12 @@ input {
     font-size: 16px;
     outline: none;
   }
-
 }
 
 /* Tablet styles */
 @media (min-width: 768px) and (max-width: 1023px) {
   .form-container {
-    width: 70%; 
+    width: 70%;
   }
 
   .radio-buttons {
@@ -257,4 +256,3 @@ input {
     margin: 15px;
   }
 }
-
