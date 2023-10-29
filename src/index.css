@@ -212,6 +212,10 @@ input {
   margin-left: 15px;
 }
 
+.summary{
+  margin: 15px;
+}
+
 /* Mobile styles */
 @media (max-width: 767px) {
   .form-container {
