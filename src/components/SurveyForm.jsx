@@ -73,7 +73,12 @@ export const SurveyForm = () => {
       Component: RadioButtons,
       valueKey: "duration",
       className: "radio-buttons",
-      options: ["1-7 days", "8-14 days", "15-19 days", "more than 19 days"],
+      options: [
+        { "name": "1-7 days", "value": "short" },
+        { "name": "8-14 days", "value": "medium" },
+        { "name": "15-19 days", "value": "long" },
+        { "name": "more than 19 days", "value": "extended" }
+      ],
       question: "How long did you stay at the Balance?",
       display: true
     },
@@ -98,8 +103,15 @@ export const SurveyForm = () => {
       valueKey: "stars",
       question: "How many stars would you give your treatment?",
       className: "radio-buttons",
-      options: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
-      display: surveyData.treatment != "I had no treatments"
+      options: [
+        { name: "1 star", value: "1"},
+        { name: "2 stars", value: "2"},
+        { name: "3 stars", value: "3"},
+        { name: "4 stars", value: "4"},
+        { name: "5 stars", value: "5"},
+        ],
+      // We define a list of the values that should not render this display. And if our state is set to one of the values we get true. We then return the opposite meaning that we set display to false if the answer is one of our excluded values.
+      display: !(["no", ""].includes(surveyData.treatment))
     },
     {
       label: "Step 6",
