@@ -59,7 +59,7 @@ export const SurveyForm = () => {
       Component: SelectOption,
       valueKey: "roomType",
       question: "Which room did you stay in?",
-      options: ["<Select type of room>", "Option 1", "Option 2", "Option 3"],
+      options: ["<Select type of room>", "Suite", "Double room", "Single room"],
       className: "dropdown",
       display: true
     },
@@ -81,9 +81,9 @@ export const SurveyForm = () => {
       options: [
         "<Select a treatment>",
         "I had no treatments",
-        "Treatment 1",
-        "Treatment 2",
-        "Treatment 3",
+        "Massage",
+        "Infra sauna",
+        "Facial",
       ],
       display: true
     },
