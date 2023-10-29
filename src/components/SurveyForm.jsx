@@ -52,7 +52,7 @@ export const SurveyForm = () => {
       valueKey: "name",
       question: "What is your name?",
       className: "name",
-      display: true
+      display: true,
     },
     {
       label: "Step 2",
@@ -61,7 +61,7 @@ export const SurveyForm = () => {
       question: "Which room did you stay in?",
       options: ["<Select type of room>", "Suite", "Double room", "Single room"],
       className: "dropdown",
-      display: true
+      display: true,
     },
     {
       label: "Step 3",
@@ -70,7 +70,7 @@ export const SurveyForm = () => {
       className: "radio-buttons",
       options: ["1-7 days", "8-14 days", "15-19 days", "more than 19 days"],
       question: "How long did you stay at the Balance?",
-      display: true
+      display: true,
     },
     {
       label: "Step 4",
@@ -85,7 +85,7 @@ export const SurveyForm = () => {
         "Infra sauna",
         "Facial",
       ],
-      display: true
+      display: true,
     },
     {
       label: "Step 5",
@@ -94,7 +94,7 @@ export const SurveyForm = () => {
       question: "How many stars would you give your treatment?",
       className: "radio-buttons",
       options: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
-      display: surveyData.treatment != "I had no treatments"
+      display: surveyData.treatment != "I had no treatments",
     },
     {
       label: "Step 6",
@@ -103,12 +103,11 @@ export const SurveyForm = () => {
       question:
         "Please let us know if there is anything else that you want to share with us.",
       className: "textarea",
-      display: true
+      display: true,
     },
   ];
 
-  const filteredSteps = steps.filter(item => item.display === true)
-  console.log("FilteredSteps ", filteredSteps)
+  const filteredSteps = steps.filter((item) => item.display === true);
 
   // Our array is indexed from 0 but currentStep starts from 1 so we subtract currentStep with 1 to get the data for the correct step.
   const stepDetails = filteredSteps[currentStep - 1];
@@ -135,7 +134,7 @@ export const SurveyForm = () => {
               </button>
             )}
             {/* We use the steps.length instead of hard coding a number. This way we can easily add or remove steps */}
-            {currentStep < steps.length ? (
+            {currentStep < filteredSteps.length ? (
               <button onClick={nextStep} className="button-survey">
                 Next
               </button>
@@ -145,7 +144,10 @@ export const SurveyForm = () => {
               </button>
             )}
           </div>
-          <ProgressBar currentStep={currentStep} numberOfQuestions={filteredSteps.length} />
+          <ProgressBar
+            currentStep={currentStep}
+            numberOfQuestions={filteredSteps.length}
+          />
         </form>
       )}
     </>
