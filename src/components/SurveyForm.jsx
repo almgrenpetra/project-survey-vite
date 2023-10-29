@@ -52,7 +52,8 @@ export const SurveyForm = () => {
       valueKey: "name",
       question: "What is your name?",
       className: "name",
-      display: true
+      display: true,
+      answerRequired: true
     },
     {
       label: "Step 2",
@@ -66,7 +67,8 @@ export const SurveyForm = () => {
         { text: "Option 3", valueKey:"3"},
       ],
       className: "dropdown",
-      display: true
+      display: true,
+      answerRequired: true
     },
     {
       label: "Step 3",
@@ -80,7 +82,8 @@ export const SurveyForm = () => {
         { "name": "more than 19 days", "value": "extended" }
       ],
       question: "How long did you stay at the Balance?",
-      display: true
+      display: true,
+      answerRequired: true
     },
     {
       label: "Step 4",
@@ -95,7 +98,8 @@ export const SurveyForm = () => {
         {text: "Treatment 2", valueKey:"2"},
         {text: "Treatment 3", valueKey:"3"},
       ],
-      display: true
+      display: true,
+      answerRequired: true
     },
     {
       label: "Step 5",
@@ -111,7 +115,8 @@ export const SurveyForm = () => {
         { name: "5 stars", value: "5"},
         ],
       // We define a list of the values that should not render this display. And if our state is set to one of the values we get true. We then return the opposite meaning that we set display to false if the answer is one of our excluded values.
-      display: !(["no", ""].includes(surveyData.treatment))
+      display: !(["no", ""].includes(surveyData.treatment)),
+      answerRequired: true
     },
     {
       label: "Step 6",
@@ -120,11 +125,15 @@ export const SurveyForm = () => {
       question:
         "Please let us know if there is anything else that you want to share with us.",
       className: "textarea",
-      display: true
+      display: true,
+      answerRequired: false
     },
   ];
 
   const filteredSteps = steps.filter(item => item.display === true)
+  const checkAllRequired = filteredSteps.reduce((passed, item) => {
+    return passed && !(item.answerRequired && !surveyData[item.valueKey]);
+  }, true);
   console.log("FilteredSteps ", filteredSteps)
 
   // Our array is indexed from 0 but currentStep starts from 1 so we subtract currentStep with 1 to get the data for the correct step.
@@ -152,12 +161,12 @@ export const SurveyForm = () => {
               </button>
             )}
             {/* We use the steps.length instead of hard coding a number. This way we can easily add or remove steps */}
-            {currentStep < filteredSteps.length ? (
-              <button onClick={nextStep} className="button-survey">
+            { currentStep < filteredSteps.length ? (
+              <button onClick={nextStep} className="button-survey" disabled={ stepDetails.answerRequired && surveyData[stepDetails.valueKey] == ""}>
                 Continue
               </button>
             ) : (
-              <button onClick={submitSurvey} className="submit">
+              <button onClick={submitSurvey} className="submit" disabled={!checkAllRequired}>
                 Submit
               </button>
             )}
