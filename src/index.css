@@ -226,6 +226,10 @@ input {
   text-align: center;
 }
 
+button:disabled {
+  opacity: 0.5;
+}
+
 /* Mobile styles */
 @media (max-width: 767px) {
   .form-container {

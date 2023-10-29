@@ -47,7 +47,6 @@ export const SurveyForm = () => {
   // We save all steps in an array as objects
   const steps = [
     {
-      label: "Step 1",
       Component: TextInput,
       valueKey: "name",
       question: "What is your name?",
@@ -56,70 +55,65 @@ export const SurveyForm = () => {
       answerRequired: true
     },
     {
-      label: "Step 2",
       Component: SelectOption,
       valueKey: "roomType",
       question: "Which room did you stay in?",
       options: [
-        { text: "<Select type of room>", valueKey:""},
-        { text: "Suite", valueKey:"suite"},
-        { text: "Double room", valueKey:"double"},
-        { text: "Single room", valueKey:"single"},
+        { name: "<Select type of room>", valueKey:""},
+        { name: "Suite", valueKey:"suite"},
+        { name: "Double room", valueKey:"double"},
+        { name: "Single room", valueKey:"single"},
       ],
       className: "dropdown",
       display: true,
       answerRequired: true
     },
     {
-      label: "Step 3",
       Component: RadioButtons,
       valueKey: "duration",
       className: "radio-buttons",
       options: [
-        { "name": "1-7 days", "value": "short" },
-        { "name": "8-14 days", "value": "medium" },
-        { "name": "15-19 days", "value": "long" },
-        { "name": "more than 19 days", "value": "extended" }
+        { name: "1-7 days", valueKey: "short" },
+        { name: "8-14 days", valueKey: "medium" },
+        { name: "15-19 days", valueKey: "long" },
+        { name: "more than 19 days", valueKey: "extended" }
       ],
       question: "How long did you stay at the Balance?",
       display: true,
       answerRequired: true
     },
     {
-      label: "Step 4",
       Component: SelectOption,
       valueKey: "treatment",
       question: "Did you book any treatments during your stay?",
       className: "dropdown",
       options: [
-        { text: "<Select a treatment>" , valueKey: ""},
-        {text: "I had no treatments", valueKey: "no"},
-        {text: "Massage", valueKey:"massage"},
-        {text: "Infra sauna", valueKey:"sauna"},
-        {text: "Facial", valueKey:"facial"},
+        { name: "<Select a treatment>" , valueKey: ""},
+        { name: "I had no treatments", valueKey: "no"},
+        { name: "Massage", valueKey:"massage"},
+        { name: "Infra sauna", valueKey:"sauna"},
+        { name: "Facial", valueKey:"facial"},
       ],
       display: true,
       answerRequired: true
     },
     {
-      label: "Step 5",
       Component: RadioButtons,
       valueKey: "stars",
       question: "How many stars would you give your treatment?",
       className: "radio-buttons",
       options: [
-        { name: "1 star", value: "1"},
-        { name: "2 stars", value: "2"},
-        { name: "3 stars", value: "3"},
-        { name: "4 stars", value: "4"},
-        { name: "5 stars", value: "5"},
+        { name: "1 star", valueKey: "1"},
+        { name: "2 stars", valueKey: "2"},
+        { name: "3 stars", valueKey: "3"},
+        { name: "4 stars", valueKey: "4"},
+        { name: "5 stars", valueKey: "5"},
         ],
       // We define a list of the values that should not render this display. And if our state is set to one of the values we get true. We then return the opposite meaning that we set display to false if the answer is one of our excluded values.
       display: !(["no", ""].includes(surveyData.treatment)),
       answerRequired: true
     },
     {
-      label: "Step 6",
       Component: TextInput,
       valueKey: "comments",
       question:
@@ -140,7 +134,7 @@ export const SurveyForm = () => {
   return (
     <>
       {submit ? (
-        <Summary surveyData={surveyData} />
+        <Summary surveyData={surveyData} steps={steps} />
       ) : (
         <form className="surveyForm" onSubmit={handleSubmit}>
           <div className="survey-question">

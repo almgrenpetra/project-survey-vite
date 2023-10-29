@@ -19,7 +19,7 @@ export const SelectOption = ({
       >
         {options.map((option) => (
           <option key={option.valueKey} value={option.valueKey}>
-            {option.text}
+            {option.name}
           </option>
         ))}
       </select>
